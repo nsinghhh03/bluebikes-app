@@ -1,6 +1,6 @@
 from dash import Dash, dcc, html, Input, Output
 import dash_bootstrap_components as dbc
-
+import os
 from pages.overview_tab import layout as overview_layout
 from pages.multimodal_tab import layout as multimodal_layout
 
@@ -32,6 +32,7 @@ def render_content(tab):
         return multimodal_layout
     return html.Div("404: Tab not found")
 
-# Run the app
-if __name__ == "__main__":
-    app.run(debug=True)
+
+if __name__ == '__main__':
+    port = int(os.environ.get("PORT", 10000))
+    app.run_server(debug=False, host="0.0.0.0", port=port)
